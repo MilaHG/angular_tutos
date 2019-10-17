@@ -1,0 +1,27 @@
+<div class="container color-dark">
+  <div class="col">
+    <p>Ajouter un voeux à la liste</p>
+  </div>
+  <div class="col">
+    <p>Ta liste de souhaits ({{ itemCount }})</p>
+  </div>
+</div>
+<div class="container color-light" [@goals]="goals.length">
+  <!-- @goals name of the animation trigger -->
+  <div class="col">
+    <p class="sm">Utilise le formulaire ci-dessous pour ajouter un nouveau souhait. Que veux-tu faire de ta vie ?</p>
+    <form action="">
+      <input type="text" class="txt" name="item" placeholder="Life goal..." [(ngModel)]="goalText">
+      <!-- [(ngModel)]="goalText" format de notation pour relier les données le template html et le component TS en bidirectionnel (data binding) on récupère les données remplies dans l'input et on les communique à la class la ligne de code ci-après est juste pour démontrer ce point -->
+      <!-- <br><span>{{ goalText }}</span><br> -->
+      <input type="submit" class="btn" [value]="btnText" (click)="addItem()">
+      <!-- event binding => au clic on passe la méthode addItem() que l'on créé dans le component -->
+    </form>
+  </div>
+  <div class="col">
+    <p class="life-container" *ngFor="let goal of goals; let i = index" (click)="removeItem(i)">
+      {{ goal }}
+    </p>
+    <!-- boucle angular *ngFor qui parcoure le tableau goals -->
+  </div>
+</div>
